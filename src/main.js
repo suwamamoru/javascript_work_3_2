@@ -2,7 +2,7 @@
 const taskTrigger = document.getElementById('task-trigger');
 const taskValue = document.getElementById('task-value');
 const taskTable = document.getElementById('task-table');
-const tasks = [];
+let tasks = [];
 
 const showTasks = () => {
   taskTable.innerText = '';
@@ -31,6 +31,11 @@ const createStatusButton = (task, status) => {
 const createRemoveButton = (task, remove) => {
   const removeButton = document.createElement('button');
   removeButton.innerText = task.remove;
+  removeButton.onclick = function() {
+    const tr = this.parentNode.parentNode;
+    tasks.splice(tr.sectionRowIndex,1);
+    showTasks();
+  };
   remove.appendChild(removeButton);
 }
 
